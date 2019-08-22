@@ -48,7 +48,7 @@ class home extends React.Component {
         >
           <EnterDetails />
         </Dialog>
-        <div className="p-grid p-justify-around p-align-center authpage">
+        <div className="p-grid p-justify-center p-align-center authpage">
           <div className="homeCards" onClick={this.onPresenterClick}>
             <Card header={headerP}>
               <h5 className="text-center">Presenter</h5>

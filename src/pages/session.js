@@ -9,6 +9,7 @@ import SessionRatingService from "../api/sessionRatingService";
 import SessionService from "../api/sessionService";
 import { Messages } from "primereact/messages";
 import { Link } from "react-router-dom";
+import isEqual from "lodash.isequal";
 
 export default class session extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ export default class session extends Component {
     this.state = {
       visible: false,
       session: null,
+      sessionData: null,
       pieChartData: null,
       lineChartData: null,
       lastRating: null,
@@ -34,15 +36,15 @@ export default class session extends Component {
   getEmojiOnRating(ratings) {
     switch (parseInt(ratings)) {
       case 1:
-        return "🤒 Not Satisfied";
+        return "🤒";
       case 2:
-        return "😣 Slightly Satisfied";
+        return "😣";
       case 3:
-        return "😕 Nuteral";
+        return "😕";
       case 4:
-        return "😎 Satisfied";
+        return "😎";
       case 5:
-        return "🤑 Fully Satisfied";
+        return "🤑";
       default:
         return "😎";
     }
@@ -105,7 +107,7 @@ export default class session extends Component {
           label: "Rating",
           data: Object.values(lineData),
           fill: false,
-          backgroundColor: "#66BB6A",
+          backgroundColor: "#42A5F5",
           borderColor: "#42A5F5"
         }
       ]
@@ -120,20 +122,26 @@ export default class session extends Component {
           sessionId: this.props.match.params.sessionId
         })
         .then(res => {
-          this.setState({
-            session: res.session,
-            pieChartData:
-              res.userRatings && this.getPieChartData(res.userRatings),
-            lineChartData:
-              res.userRatings && this.getLineChartData(res.sessionRatings),
-            lastRating: res.lastRating,
-            totalAudience: res.totalAudience
-          });
+          if (
+            !isEqual(res.sessionRatings, this.state.sessionRatings) ||
+            !isEqual(res.session, this.state.session)
+          ) {
+            this.setState({
+              session: res.session,
+              pieChartData:
+                res.userRatings && this.getPieChartData(res.userRatings),
+              lineChartData:
+                res.sessionRatings && this.getLineChartData(res.sessionRatings),
+              sessionRatings: res.sessionRatings,
+              lastRating: res.lastRating,
+              totalAudience: res.totalAudience
+            });
+          }
           if (res.session.status !== "PROGRESS") {
             clearInterval(intervalHandler);
           }
         });
-    }, 50000);
+    }, 5000);
   };
 
   componentDidMount() {
@@ -149,19 +157,20 @@ export default class session extends Component {
           lineChartData:
             res.sessionRatings && this.getLineChartData(res.sessionRatings),
           lastRating: res.lastRating,
-          totalAudience: res.totalAudience
+          totalAudience: res.totalAudience,
+          sessionRatings: res.sessionRatings
         });
         if (res.session.status === "PROGRESS") {
           this.pollSessionData();
         }
-      });              
+      });
   }
 
   onClickInviteDetails = () => {
     this.setState({ visible: true });
   };
 
-  onHideInviteDetails = () => {  
+  onHideInviteDetails = () => {
     this.setState({ visible: false });
   };
 
@@ -175,7 +184,8 @@ export default class session extends Component {
               header="Joining Details"
               visible={this.state.visible}
               onHide={this.onHideInviteDetails}
-              maximizable>
+              maximizable
+            >
               <Invitedetails invitekey={this.state.session.invitekey} />
             </Dialog>
 
@@ -215,7 +225,7 @@ export default class session extends Component {
                   />
                   {this.props.loggedInUser &&
                   this.state.session.creator._id ===
-                  this.props.loggedInUser._id &&
+                    this.props.loggedInUser._id &&
                   this.state.session.status === "PROGRESS" ? (
                     <Button
                       label="Finish Session"
@@ -228,7 +238,7 @@ export default class session extends Component {
                   )}
                   {this.props.loggedInUser &&
                   this.state.session.creator._id ===
-                  this.props.loggedInUser._id &&
+                    this.props.loggedInUser._id &&
                   this.state.session.status === "NOTSTARTED" ? (
                     <Button
                       label="Start Session"

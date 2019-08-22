@@ -76,7 +76,6 @@ export default class rating extends Component {
           this.getMessageOnRating(res);
         })
         .catch(err => {
-          console.log("Error while getting user data ", err);
         });
     });
   }

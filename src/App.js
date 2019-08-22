@@ -24,7 +24,6 @@ class App extends React.Component {
         .getLoggedInUser()
         .then(response => this.setLoggedInUser(response))
         .catch(err => {
-          console.log("Error while uploading the file: ", err);
         });
     }
   }
@@ -40,7 +39,6 @@ class App extends React.Component {
       .logOut()
       .then(() => this.setLoggedInUser(null))
       .catch(err => {
-        console.log("Error while uploading the file: ", err);
       });
   };
 

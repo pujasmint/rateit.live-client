@@ -32,7 +32,6 @@ class profile extends Component {
         });
       })
       .catch(err => {
-        console.log("Error while creating session ", err);
       });
   }
 
@@ -53,7 +52,6 @@ class profile extends Component {
           this.props.history.push(`/session/${res._id}`);
         })
         .catch(err => {
-          console.log("Error while creating session ", err);
         });
     }
   };

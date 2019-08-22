@@ -17,7 +17,6 @@ export default class AuthService {
   };
 
   signUp(body) {
-    // console.log('file in service: ', theFile)
     const data = new FormData();
     Object.keys(body).forEach(key => data.append(key, body[key]));
     return this.service

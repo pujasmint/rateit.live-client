@@ -27,7 +27,6 @@ class Login extends React.Component {
         this.props.setLoggedInUser(response);
       })
       .catch(err => {
-        console.log("Error while uploading the file: ", err);
       });
   };
 
