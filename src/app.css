@@ -1,0 +1,109 @@
+.authpage {
+  height: 100vh;
+  padding-top: 40px;
+}
+
+.authpage::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  z-index: -1;
+  background: url("https://miro.medium.com/max/1874/1*toepgVwopga9TYFpSkSxXw.png");
+}
+
+.inputfile {
+  margin-top: 10px;
+  margin-left: 8px;
+}
+
+.p-menubar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  border-radius: 0 !important;
+}
+
+.p-dropdown {
+  align-self: center;
+}
+
+.presenter-card.p-card {
+  border-radius: 8px;
+  max-width: 300px;
+}
+
+.p-card-body {
+  padding: 8px !important;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.homeCards {
+  width: 25%;
+  margin: 0 64px;
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+}
+
+.homeCards:hover {
+  -webkit-box-shadow: 10px -9px 10px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px -9px 10px -6px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px -9px 10px -6px rgba(0, 0, 0, 0.75);
+}
+
+@media only screen and (max-width: 600px) {
+  .homeCards {
+    width: 100%;
+  }
+
+  .p-dropdown {
+    align-self: stretch;
+    margin-top: 8px;
+  }
+  .presenter-card.p-card {
+    max-width: 100%;
+  }
+}
+
+#sticky-footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.logo {
+  width: 100px;
+}
+
+.top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.pages {
+  padding: 64px 32px;
+}
+
+.presenter .p-inputtext {
+  width: 100%;
+}
+
+.presenter-card .p-card-header img {
+  border-radius: 50%;
+  width: 250px;
+}
