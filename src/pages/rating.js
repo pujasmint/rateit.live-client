@@ -109,7 +109,7 @@ export default class rating extends Component {
         {this.state.creator ? (
           <>
             <div className="p-col-12">
-              <Messages className="p-col-12" ref={el => (this.messages = el)} />
+              <Messages ref={el => (this.messages = el)} />
               <Panel className="p-col-12"  header={`Session Name: ${this.state.session.name}`}>
                 <div className="p-grid p-justify-around">
                   <RatingIcon
