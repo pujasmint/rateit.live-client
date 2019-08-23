@@ -6,7 +6,7 @@ export default function invitedetails(props) {
     <div className="p-grid p-justify-center p-align-center">
       <h1 className="display-2 text-danger m-4">{props.invitekey}</h1>
       <QRCode
-        value={`http://rateit.live/session/${props.invitekey}`}
+        value={`http://rateit.live/rating/${props.invitekey}`}
         size={375}
         renderAs="svg"
         includeMargin={true}
