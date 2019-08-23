@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
 var scaleRotate = {
-  fontSize: "48px",
+  fontSize: "42px",
   transform: "rotate(30deg)",
   cursor: "pointer"
 };
 var styleDefault = {
-  fontSize: "48px",
+  fontSize: "42px",
   cursor: "pointer"
 };
 
